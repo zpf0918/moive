@@ -3,6 +3,10 @@ class FilmsController < ApplicationController
     @films = Film.all
   end
 
+  def show
+    @film = Film.find(params[:id])
+  end
+
   def new
     @film = Film.new
   end

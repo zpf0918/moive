@@ -17,9 +17,11 @@ class FilmsController < ApplicationController
 
   def create
     @film = Film.new(film_params)
-    @film.save
-
-    redirect_to films_path
+    if @film.save
+      redirect_to films_path
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -32,9 +34,11 @@ class FilmsController < ApplicationController
   def update
     @film = Film.find(params[:id])
 
-    @film.update(film_params)
-
-    redirect_to films_path, notice: "Update Success"
+    if @film.update(film_params)
+     redirect_to films_path, notice: "Update Success"
+   else
+     render :edit
+   end
   end
 
   private

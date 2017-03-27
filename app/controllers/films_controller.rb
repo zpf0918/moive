@@ -7,6 +7,10 @@ class FilmsController < ApplicationController
     @film = Film.find(params[:id])
   end
 
+  def edit
+    @film = Film.find(params[:id])
+  end
+
   def new
     @film = Film.new
   end

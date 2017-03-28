@@ -8,6 +8,7 @@
         <td>#</td>
         <td>影名</td>
         <td>电影描述</td>
+        <td>创建者</td>
       </tr>
     </thead>
     <tbody>
@@ -16,6 +17,7 @@
       <td>#</td>
         <td><%= link_to(film.title, film_path(film)) %></td>
         <td><%= film.description %></td>
+        <td><%= film.user.email %> </td>
       <td>
           <%= link_to("编辑", edit_film_path(film),    class: "btn btn-sm btn-default")%>
           <%= link_to("删除", film_path(film),     class: "btn btn-sm btn-default",

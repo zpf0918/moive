@@ -6,9 +6,13 @@ Rails.application.routes.draw do
       post :quit
     end
 
-    
+
     resources :posts
   end
   root 'films#index'
 
+
+namespace :account do
+  resources :films
+end
 end

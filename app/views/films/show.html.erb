@@ -4,8 +4,10 @@
     <span class="pull-right">
       <% if current_user && current_user.is_member_of?(@film) %>
         <label class="label label-success"> 收藏</label>
+              <%= link_to("取消收藏", quit_film_path(@film), method: :post, class: "btn btn-default") %>
         <% else %>
         <label class="label label-warning"> 未收藏</label>
+        <%= link_to("点我收藏",join_film_path(@film), method: :post, class: "btn btn-default") %>
         <% end %>
       </span>
 
@@ -20,7 +22,7 @@
   <table class="table">
     <thead>
      <tr>
-
+        <th>评论</th>
         <th>评论者</th>
        <th>发表时间</th>
       </tr>

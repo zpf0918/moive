@@ -21,6 +21,7 @@ class FilmsController < ApplicationController
     @film = Film.new(film_params)
     @film.user = current_user
     if @film.save
+      current_user.join!(@film)
       redirect_to films_path
     else
       render :new
@@ -40,6 +41,33 @@ class FilmsController < ApplicationController
      render :edit
    end
   end
+
+
+  def join
+    @film = Film.find(params[:id])
+
+    if !current_user.is_member_of?(@film)
+      current_user.join!(@film)
+      flash[:notice] = "恭喜你，收藏成功！"
+    else
+      flash[:warning] = "你已经收藏该影片了！"
+    end
+
+    redirect_to film_path(@film)
+    end
+
+    def quit
+      @film= Film.find(params[:id])
+
+      if current_user.is_member_of?(@film)
+        current_user.quit!(@film)
+        flash[:alert] = "已取消收藏！"
+      else
+        flash[:warning] = "你未收藏该电影"
+      end
+
+      redirect_to film_path(@film)
+    end
 
   private
 

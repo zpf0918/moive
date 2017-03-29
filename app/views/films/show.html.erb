@@ -1,7 +1,15 @@
 <div class="col-md-12">
   <div class="film">
 
-     <%= link_to("发表评论", new_film_post_path(@film), class: "btn btn-default pull-right")%>
+    <span class="pull-right">
+      <% if current_user && current_user.is_member_of?(@film) %>
+        <label class="label label-success"> 收藏</label>
+        <% else %>
+        <label class="label label-warning"> 未收藏</label>
+        <% end %>
+      </span>
+
+     <%= link_to("写评论", new_film_post_path(@film), class: "btn btn-default pull-right")%>
     <% if current_user && current_user == @film.user %>
     <%= link_to("编辑", edit_film_path(@film), class: "btn btn-primary pull-right")%>
     <% end %>

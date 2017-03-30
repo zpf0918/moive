@@ -20,7 +20,30 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @film = Film.find(params[:film_id])
+    @post = Post.find(params[:id])
+  end
 
+  def update
+    @film = Film.find(params[:film_id])
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to account_posts_path(@film), notice: 'Post Update Success!'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @film = Film.find(params[:film_id])
+    @post = Post.find(params[:id])
+    if @post.destroy
+    redirect_to account_posts_path(@film), alert: 'Post deleted!'
+  else
+    render :edit
+  end
+  end
 
   private
 

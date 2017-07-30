@@ -39,10 +39,10 @@ class PostsController < ApplicationController
     @film = Film.find(params[:film_id])
     @post = Post.find(params[:id])
     if @post.destroy
-    redirect_to account_posts_path(@film), alert: 'Post deleted!'
-  else
-    render :edit
-  end
+      redirect_to account_posts_path(@film), alert: 'Post deleted!'
+    else
+     render :edit
+    end
   end
 
   private
